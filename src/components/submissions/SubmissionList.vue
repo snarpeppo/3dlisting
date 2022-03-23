@@ -1,15 +1,26 @@
 <template>
   <div>
-    <ul v-if="getQueue">
-      <submission-item
-        v-for="submission in getQueue"
-        :key="submission.id"
-        :username="submission.username"
-        :fileName="submission.fileName"
-        :filament="submission.filament"
-        :timestamp="submission.timestamp"
-      ></submission-item>
-    </ul>
+    <h2 class="mb-3">3D Queue</h2>
+    <table class="table table-hover" id="formtable" v-if="getQueue">
+      <thead class="table-primary">
+        <tr>
+          <th scope="col">Username</th>
+          <th scope="col">File</th>
+          <th scope="col">Filamento</th>
+          <th scope="col">timestamp</th>
+        </tr>
+      </thead>
+      <tbody>
+        <submission-item
+          v-for="submission in getQueue"
+          :key="submission.id"
+          :username="submission.username"
+          :fileName="submission.fileName"
+          :filament="submission.filamentColor"
+          :timestamp="submission.timestamp"
+        ></submission-item>
+      </tbody>
+    </table>
     <div v-else>
       <p>non ci sono submissions, sii il primo a farne una!</p>
       <router-link to="/Submission">Clicca qui</router-link>
@@ -46,7 +57,7 @@ export default {
 </script>
 
 <style scoped>
-ul {
-  list-style-type: none;
+table {
+  border-radius: 6px;
 }
 </style>

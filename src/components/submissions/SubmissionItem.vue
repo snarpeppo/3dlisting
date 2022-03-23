@@ -16,9 +16,7 @@
 </template>
 
 <script>
-import BaseCard from "../base/BaseCard.vue";
 export default {
-  components: { BaseCard },
   props: ["id", "username", "fileName", "filament", "timestamp"],
 };
 </script>

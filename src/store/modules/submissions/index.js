@@ -3,22 +3,21 @@ import actions from "./actions.js";
 import getters from "./getters.js";
 
 export default {
-    namespaced: true,
-    state() {
-      return {
-        submissions: [
-          {
-            id: null,
-            username: null,
-            fileName: null,
-            filament: null,
-            timestamp: null
-          },
-        ],
-      };
-    },
-    mutations,
-    actions,
-    getters,
-  };
-  
+  namespaced: true,
+  state() {
+    return {
+      submissions: [
+        {
+          id: 1,
+          username: "test",
+          fileName: "file.test",
+          filamentColor: "robe",
+          timestamp: "robe",
+        },
+      ],
+    };
+  },
+  mutations,
+  actions,
+  getters,
+};

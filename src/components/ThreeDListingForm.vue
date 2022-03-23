@@ -1,50 +1,56 @@
 <template>
-  <h1>Create your subscription!</h1>
-  <form @submit.prevent="submitForm">
-    <!-- USERNAME -->
-    <div class="mb-5" :class="{ invalid: !username.isValid }">
-      <label for="username" class="form-label text-start">Username:</label>
-      <input
-        type="text"
-        id="username"
-        name="username"
-        class="form-control"
-        v-model.trim="username.val"
-        @blur="clearValidate('username')"
-      />
-      <p v-if="!username.isValid" class="p-error">the username in incorrect</p>
-    </div>
-    <!-- FILE  -->
-    <div class="mb-5" :class="{ invalid: !file.isValid }">
-      <label for="myfile" class="form-label text-start">Select a file:</label>
-      <input
-        type="file"
-        id="formFile"
-        class="form-control"
-        name="fileName"
-        @change="filetest"
-        @click="clearValidate('file')"
-      />
-      <p v-if="!file.isValid" class="p-error">file not uploaded</p>
-    </div>
+  <div>
+    <h1>Create your subscription!</h1>
+    <form @submit.prevent="submitForm">
+      <!-- USERNAME -->
+      <div class="mb-5" :class="{ invalid: !username.isValid }">
+        <label for="username" class="form-label text-start">Username:</label>
+        <input
+          type="text"
+          id="username"
+          name="username"
+          class="form-control"
+          v-model.trim="username.val"
+          @blur="clearValidate('username')"
+        />
+        <p v-if="!username.isValid" class="p-error">
+          the username in incorrect
+        </p>
+      </div>
+      <!-- FILE  -->
+      <div class="mb-5" :class="{ invalid: !file.isValid }">
+        <label for="myfile" class="form-label text-start">Select a file:</label>
+        <input
+          type="file"
+          id="formFile"
+          class="form-control"
+          name="fileName"
+          @change="filetest"
+          @click="clearValidate('file')"
+        />
+        <p v-if="!file.isValid" class="p-error">file not uploaded</p>
+      </div>
 
-    <div :class="{ invalid: !filament.isValid }">
-      <label for="filaments" class="form-label text-start"
-        ><h2>Filaments availables:</h2></label
-      >
-      <!-- DA RIVEDERE IL CONTROLLO A FRONTEND DEI FILAMENTI -->
-      <filaments-list
-        ref="filamentID"
-        :class="{ invalid: !filament.isValid }"
-        @mousedown="clearValidate('filament')"
-      >
-      </filaments-list>
-      <p v-if="!filament.isValid" class="p-error">the filament not selected</p>
-    </div>
-    <div class="d-grid gap-2 col-6 mx-auto">
-      <button type="submit" class="btn btn-primary">Submit</button>
-    </div>
-  </form>
+      <div :class="{ invalid: !filament.isValid }">
+        <label for="filaments" class="form-label text-start"
+          ><h2>Filaments availables:</h2></label
+        >
+        <!-- DA RIVEDERE IL CONTROLLO A FRONTEND DEI FILAMENTI -->
+        <filaments-list
+          ref="filamentID"
+          :class="{ invalid: !filament.isValid }"
+          @mousedown="clearValidate('filament')"
+        >
+        </filaments-list>
+        <p v-if="!filament.isValid" class="p-error">
+          the filament not selected
+        </p>
+      </div>
+      <div class="d-grid gap-2 col-6 mx-auto">
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
+    </form>
+  </div>
 </template>
 
 <script>

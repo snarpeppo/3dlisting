@@ -1,7 +1,8 @@
 <template>
   <div class="3dQueueForm">
-    <h2>3d Waiting List</h2>
-    <submission-list> </submission-list>
+    <base-big-card>
+      <submission-list> </submission-list>
+    </base-big-card>
   </div>
 </template>
 
@@ -13,5 +14,8 @@ export default {
   },
 };
 </script>
-<style>
+<style scoped>
+.rounded {
+  border-radius: 25px;
+}
 </style>

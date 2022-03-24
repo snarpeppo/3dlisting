@@ -35,7 +35,6 @@ export default {
   data() {
     return {
       filamentSelezionato: null,
-      selectedTd: 0,
     };
   },
   components: {

@@ -19,7 +19,6 @@ export default {
             fileName: data.fileName,
             fk_filament: data.fk_filament,
         };
-        console.log(subData)
 
         const res = await fetch(`http://localhost:3000/createSub`,
             {

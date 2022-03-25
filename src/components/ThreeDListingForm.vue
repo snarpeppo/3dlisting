@@ -18,8 +18,9 @@
         </p>
       </div>
       <!-- FILE  -->
-      <div class="mb-5" :class="{ invalid: !file.isValid }">
-        <label for="myfile" class="form-label text-start">Select a file:</label>
+      <div class="mb-5" id="fileLink" :class="{ 'p-invalid': !file.isValid }">
+        <label for="Url" class="form-label text-start">Model Url:</label>
+        <!-- 
         <input
           type="file"
           id="formFile"
@@ -27,6 +28,15 @@
           name="fileName"
           @change="filetest"
           @click="clearValidate('file')"
+        /> -->
+
+        <InputText
+          type="text"
+          id="Url"
+          v-model="this.file.url"
+          v-tooltip.top.focus="
+            'inserisci il tuo link al modello, per esempio:\n\n https://www.thingiverse.com/thing:2239296 '
+          "
         />
         <p v-if="!file.isValid" class="p-error">file not uploaded</p>
       </div>
@@ -68,7 +78,7 @@ export default {
       },
       file: {
         isValid: true,
-        name: "",
+        url: "",
       },
       filament: {
         id: "",
@@ -89,6 +99,7 @@ export default {
         this.formIsValid = false;
         console.log(`username is not ideal`);
       }
+      console.log(this.file);
       if (this.file.name === "" || this.file.name === null) {
         this.file.isValid = false;
         this.formIsValid = false;
@@ -115,7 +126,7 @@ export default {
 
       const formData = {
         username: this.username.val,
-        fileName: this.file.name,
+        fileName: this.file.url,
         fk_filament: this.filament.id,
       };
       console.log(formData);

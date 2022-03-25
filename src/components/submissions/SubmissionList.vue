@@ -6,13 +6,26 @@
       :value="subs"
       v-if="getQueue.length > 0"
     >
-      <Column
-        v-for="col of columns"
+      <!-- <Column
+        v-for="col of getColumns"
         :field="col.field"
         :header="col.header"
         :key="col.field"
         :sortable="true"
-      ></Column>
+        :href="goToLink(col.field)"
+      ></Column> -->
+
+      <Column field="username" header="Username" :sortable="true"></Column>
+      <Column field="fileName" header="Url" :sortable="true">
+        <template #body="slotProps"
+          ><a
+            :href="slotProps.data.fileName"
+            v-text="slotProps.data.fileName"
+          />
+        </template>
+      </Column>
+      <Column field="filamentColor" header="Filement" :sortable="true"></Column>
+      <Column field="timestamp" header="Timestamp" :sortable="true"></Column>
     </DataTable>
     <div v-else>
       <p>non ci sono submissions, sii il primo a farne una!</p>
@@ -25,7 +38,7 @@
 export default {
   data() {
     return {
-      columns: null,
+      // columns: null,
       subs: null,
     };
   },
@@ -36,17 +49,20 @@ export default {
 
   created() {
     this.loadQueue();
-    this.columns = [
-      { field: "username", header: "Username" },
-      { field: "fileName", header: "File" },
-      { field: "filamentColor", header: "Filament" },
-      { field: "timestamp", header: "Timestamp" },
-    ];
+    // this.columns = [
+    //   { field: "username", header: "Username" },
+    //   { field: "fileName", header: "File" },
+    //   { field: "filamentColor", header: "Filament" },
+    //   { field: "timestamp", header: "Timestamp" },
+    // ];
   },
 
   computed: {
     getQueue() {
       return this.$store.getters["submissions/getQueue"];
+    },
+    getColumns() {
+      return this.columns;
     },
   },
   methods: {

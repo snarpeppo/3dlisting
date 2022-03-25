@@ -11,7 +11,10 @@ import "primeicons/primeicons.css"
 import DataTable from 'primevue/datatable';
 import Column from 'primevue/column';
 import ColumnGroup from 'primevue/columngroup';
-
+//FORM INPUTS
+import InputText from 'primevue/inputtext';
+import Tooltip from 'primevue/tooltip';
+//MY COMPONENTS
 import BaseButton from "./components/base/BaseButton.vue";
 import BaseCard from "./components/base/BaseCard.vue";
 import BaseBigCard from "./components/base/BaseBigCard.vue";
@@ -29,4 +32,7 @@ app.component("base-big-card", BaseBigCard);
 app.component("DataTable", DataTable);
 app.component("Column", Column);
 app.component("ColumnGroup", ColumnGroup);
+app.component("InputText", InputText);
+app.directive("Tooltip", Tooltip);
+//APP MOUNT
 app.mount("#app");

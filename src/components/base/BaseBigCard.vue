@@ -12,7 +12,6 @@
     -0.5em 0 0.4em rgb(0 0 0 / 26%);
   padding: 1rem;
   margin: 2rem auto;
-  max-height: 40rem;
   max-width: 80%;
 }
 </style>

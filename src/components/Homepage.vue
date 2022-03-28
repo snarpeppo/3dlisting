@@ -2,6 +2,7 @@
   <base-card>
     <h1>Welcome MutherFucker</h1>
     <h2>Wanna Print something?</h2>
+    <img id="gif" src="/images/danceLoop.gif" alt="Funny image" />
     <router-link to="/submission"><h1>Click Here!</h1> </router-link>
   </base-card>
 </template>
@@ -25,5 +26,11 @@ li {
 }
 a {
   color: #42b983;
+}
+#gif {
+  min-width: 10rem;
+  min-height: 5rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
 }
 </style>

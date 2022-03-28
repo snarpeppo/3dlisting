@@ -1,8 +1,8 @@
 <template>
   <div class="3dQueueForm">
-    <base-card>
+    <base-big-card>
       <ThreeDListingForm @save-data="saveData"> </ThreeDListingForm>
-    </base-card>
+    </base-big-card>
   </div>
 </template>
 

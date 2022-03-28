@@ -3,45 +3,51 @@
     <h1>Create your subscription!</h1>
     <form @submit.prevent="submitForm">
       <!-- USERNAME -->
-      <div class="mb-5" :class="{ invalid: !username.isValid }">
+      <div class="mb-5">
         <label for="username" class="form-label text-start">Username:</label>
-        <input
+        <!-- <input
           type="text"
           id="username"
           name="username"
           class="form-control"
           v-model.trim="username.val"
           @blur="clearValidate('username')"
+        /> -->
+        <InputText
+          type="text"
+          id="username"
+          placeholder="Username"
+          v-model.trim="username.val"
+          v-tooltip.top.focus="'inserisci il tuo User'"
+          @keypress="clearValidate('username')"
+          @blur="clearValidate('username')"
+          :class="!username.isValid ? 'p-invalid' : ''"
         />
-        <p v-if="!username.isValid" class="p-error">
-          the username in incorrect
-        </p>
+        <div v-if="!username.isValid">
+          <Message severity="error">Username is required</Message>
+        </div>
       </div>
       <!-- FILE  -->
-      <div class="mb-5" id="fileLink" :class="{ 'p-invalid': !file.isValid }">
+      <div class="mb-5" id="fileLink">
         <label for="Url" class="form-label text-start">Model Url:</label>
-        <!-- 
-        <input
-          type="file"
-          id="formFile"
-          class="form-control"
-          name="fileName"
-          @change="filetest"
-          @click="clearValidate('file')"
-        /> -->
-
         <InputText
           type="text"
           id="Url"
+          placeholder="Url"
           v-model="this.file.url"
           v-tooltip.top.focus="
             'inserisci il tuo link al modello, per esempio:\n\n https://www.thingiverse.com/thing:2239296 '
           "
+          @keypress="clearValidate('file')"
+          @blur="clearValidate('file')"
+          :class="!file.isValid ? 'p-invalid' : ''"
         />
-        <p v-if="!file.isValid" class="p-error">file not uploaded</p>
+        <div v-if="!file.isValid">
+          <Message severity="error">Url is required</Message>
+        </div>
       </div>
 
-      <div :class="{ invalid: !filament.isValid }">
+      <div class="filaments">
         <label for="filaments" class="form-label text-start"
           ><h2>Filaments availables:</h2></label
         >
@@ -49,17 +55,18 @@
         <filaments-list
           ref="filamentID"
           :class="{ invalid: !filament.isValid }"
-          @mousedown="clearValidate('filament')"
+          @click="clearValidate('filament')"
         >
         </filaments-list>
-        <p v-if="!filament.isValid" class="p-error">
-          the filament not selected
-        </p>
+        <div v-if="!filament.isValid">
+          <Message severity="error">Filament not selected</Message>
+        </div>
       </div>
       <div class="d-grid gap-2 col-6 mx-auto">
         <button type="submit" class="btn btn-primary">Submit</button>
       </div>
     </form>
+    <Toast />
   </div>
 </template>
 
@@ -89,8 +96,17 @@ export default {
     };
   },
   methods: {
+    showSuccess() {
+      this.$toast.add({
+        severity: "success",
+        summary: "Success Message",
+        detail: "Message Content",
+        life: 3000,
+      });
+    },
     clearValidate(input) {
       this[input].isValid = true;
+      console.log(input, this[input].isValid);
     },
     validateForm() {
       this.formIsValid = true;
@@ -100,7 +116,7 @@ export default {
         console.log(`username is not ideal`);
       }
       console.log(this.file);
-      if (this.file.name === "" || this.file.name === null) {
+      if (this.file.url === "" || this.file.url === null) {
         this.file.isValid = false;
         this.formIsValid = false;
         console.log(`file is not ideal`);
@@ -114,13 +130,13 @@ export default {
     },
     submitForm() {
       this.filament.id = this.$refs.filamentID.filamentSelezionato;
-      console.log("id", this.filament.id);
       this.validateForm();
 
       if (!this.formIsValid) {
         console.log("form is not valid");
         return;
       }
+      this.showSuccess();
       console.log("form is valid");
       console.log("refFilamento", this.$refs.filamentID.filamentSelezionato);
 
@@ -169,23 +185,6 @@ textarea {
   font: inherit;
 }
 
-input:focus,
-textarea:focus {
-  background-color: #f0e6fd;
-  outline: none;
-  border-color: #3d008d;
-}
-
-input[type="checkbox"] {
-  display: inline;
-  width: auto;
-  border: none;
-}
-
-input[type="checkbox"]:focus {
-  outline: #3d008d solid 1px;
-}
-
 h1 {
   margin-bottom: 2.5rem;
 }
@@ -195,7 +194,7 @@ h3 {
   font-size: 1rem;
 }
 
-p.p-error {
+/* p.p-error {
   color: red;
 }
 
@@ -206,5 +205,5 @@ p.p-error {
 .invalid input,
 .invalid textarea {
   border: 1px solid red;
-}
+} */
 </style>

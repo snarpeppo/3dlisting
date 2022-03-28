@@ -14,6 +14,11 @@ import ColumnGroup from 'primevue/columngroup';
 //FORM INPUTS
 import InputText from 'primevue/inputtext';
 import Tooltip from 'primevue/tooltip';
+//MESSAGES IMPORTS
+import Message from 'primevue/message';
+import InlineMessage from 'primevue/inlinemessage';
+import ToastService from 'primevue/toastservice';
+import Toast from 'primevue/toast';
 //MY COMPONENTS
 import BaseButton from "./components/base/BaseButton.vue";
 import BaseCard from "./components/base/BaseCard.vue";
@@ -24,6 +29,7 @@ const app = createApp(App);
 app.use(PrimeVue);
 app.use(store);
 app.use(router);
+app.use(ToastService);
 app.component("base-button", BaseButton);
 app.component("base-card", BaseCard);
 app.component("base-big-card", BaseBigCard);
@@ -33,6 +39,10 @@ app.component("DataTable", DataTable);
 app.component("Column", Column);
 app.component("ColumnGroup", ColumnGroup);
 app.component("InputText", InputText);
+app.component("Message", Message);
+app.component("InlineMessage", InlineMessage);
+app.component("Toast", Toast);
 app.directive("Tooltip", Tooltip);
+
 //APP MOUNT
 app.mount("#app");

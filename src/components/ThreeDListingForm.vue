@@ -16,7 +16,7 @@
         <InputText
           type="text"
           id="username"
-          placeholder="Username"
+          placeholder="XxX_Mastrota_420"
           v-model.trim="username.val"
           v-tooltip.top.focus="'inserisci il tuo User'"
           @keypress="clearValidate('username')"
@@ -33,11 +33,9 @@
         <InputText
           type="text"
           id="Url"
-          placeholder="Url"
+          placeholder="https://www.thingiverse.com/thing:2239296"
           v-model="this.file.url"
-          v-tooltip.top.focus="
-            'inserisci il tuo link al modello, per esempio:\n\n https://www.thingiverse.com/thing:2239296 '
-          "
+          v-tooltip.top.focus="'inserisci il tuo link al modello'"
           @keypress="clearValidate('file')"
           @blur="clearValidate('file')"
           :class="!file.isValid ? 'p-invalid' : ''"
